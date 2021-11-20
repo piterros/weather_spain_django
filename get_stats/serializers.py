@@ -2,7 +2,7 @@ from .models import Malaga, Murcia, Sevilla, Valencia
 from rest_framework import serializers
 
 
-class MalagaSerializer(serializers.HyperlinkedModelSerializer):
+class MalagaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Malaga
         fields = '__all__'

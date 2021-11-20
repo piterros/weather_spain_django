@@ -2,14 +2,20 @@ from django.urls import include, path
 from rest_framework import routers
 from get_stats import views
 
-router = routers.DefaultRouter()
-router.register(r'malaga', views.MalagaViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'list', views.get_data_list)
+# router.register(r'post_val', views.post_data)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+# urlpatterns = [
+#     path('', include(router.urls)),
+#     # path('get_stats/', include('rest_framework.urls', namespace='rest_framework')),
+#     # path('malaga/', views.MalagaViewSet.as_view()),
+# ]
+
 urlpatterns = [
-    path('', include(router.urls)),
-    path('get_stats/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('', include(router.urls)),
+    path('list/', views.get_data_list, name='list'),
+    path('post_val/', views.create, name='post_val'),
 ]
 
 # from django.urls import include, path

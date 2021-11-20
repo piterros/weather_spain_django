@@ -1,0 +1,12 @@
+Weather Spain:
+- pobieranie z API Aemet danych pogodowych z dowolnego okresu dla 4 miast: Malaga, Murcia, Sevilla, Valencia
+- ładowanie pobranych danych do bazy danych
+- wyświetlanie danych:
+	- średnia z dowolnego miasta, z dowolnego okresu, dowolnego parametru pogodowego, wg miesięcy
+		np. Malaga, 01.01.2010 - 01.01.2018, styczeń-marzec, opady
+		endpoint /Months/Malaga/01012010-01012018/precipitacion
+
+	- średnia z dowolnego miasta, z dowolnego okresu, dowolnego parametru pogodowego, wg dni miesiąca
+		np. Malaga, 01.01.2010 - 01.01.2018, 20-30 marzec, opady
+		endpoint /DayOfMonth/Malaga/01012010-01012018/precipitacion
+	

@@ -1,7 +1,7 @@
-from .models import Malaga, Murcia, Sevilla, Valencia
+from .models import WeatherStats
 from rest_framework import viewsets
 # from rest_framework import permissions
-from .serializers import MalagaSerializer
+# from .serializers import WeatherStatsSerializer
 from rest_framework.response import Response
 # from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -19,9 +19,9 @@ from .get_data_from_api import get_data
     #     return Response(serializer.data)
 
 @api_view(['GET',])
-def get_data_list(request):
+def get_weather_stats(request):
     # if request.method == 'GET':
-    items = Malaga.objects.all()
+    items = WeatherStats.objects.all()
     # items_serializer = Malaga(items, many=True)
     return Response(items)
 

@@ -1,10 +1,10 @@
-from .models import Malaga, Murcia, Sevilla, Valencia
+from .models import WeatherStats
 from rest_framework import serializers
 
 
-class MalagaSerializer(serializers.ModelSerializer):
+class WeatherStatsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Malaga
+        model = WeatherStats
         fields = '__all__'
         # fields = [
         #     fecha

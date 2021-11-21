@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class WeatherStats(models.Model):
     fecha = models.DateField(blank=True, null=True)
     indicativo = models.CharField(max_length=100, blank=True, null=True)
@@ -25,6 +23,8 @@ class WeatherStats(models.Model):
     sol = models.FloatField(blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     station = models.CharField(max_length=100, blank=True, null=True)
+
+
 
 # class BaseWeatherStats(models.Model):
 #     fecha = models.DateField(blank=True, null=True)

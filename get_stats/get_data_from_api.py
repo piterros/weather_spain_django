@@ -6,7 +6,7 @@ from .database import add_to_database
 
 
 def get_data(start_date, end_date, station, city) -> bool:
-    print('run get_data:', start_date, end_date, station)
+    # print('run get_data:', start_date, end_date, station, flush=True)
     # station = '6156X'
     # start_date = '2019-01-01T00:00:00UTC'
     # end_date = '2021-09-30T23:59:59UTC'
@@ -23,5 +23,5 @@ def get_data(start_date, end_date, station, city) -> bool:
 
     response_data = requests.request("GET", url_data)
     data_final = json.loads(response_data.text)
-    add_to_database(data=data_final, city=city)
+    add_to_database(data=data_final, city=city, station=station)
     return True

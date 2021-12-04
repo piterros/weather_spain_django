@@ -6,7 +6,7 @@ from .database import add_to_database
 
 
 def get_data(start_date, end_date, station, city) -> bool:
-    # print('run get_data:', start_date, end_date, station, flush=True)
+    print('run get_data:', flush=True)
     # station = '6156X'
     # start_date = '2019-01-01T00:00:00UTC'
     # end_date = '2021-09-30T23:59:59UTC'

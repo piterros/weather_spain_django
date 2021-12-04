@@ -10,3 +10,6 @@ Weather Spain:
 		np. Malaga, 01.01.2010 - 01.01.2018, 20-30 marzec, opady
 		endpoint /DayOfMonth/Malaga/01012010-01012018/precipitacion
 	
+
+{"station": "6156X", "city": "malaga", "start_date": "2017-01-01T00:00:00UTC", "end_date": "2017-01-30T23:59:59UTC"}
+{"station": "7178I", "city": "murcia", "start_date": "2017-01-01T00:00:00UTC", "end_date": "2017-01-30T23:59:59UTC"}

@@ -26,6 +26,7 @@ router = DefaultRouter()
 urlpatterns = [
     path('', include(router.urls)),
     path('show_data/', views.show_data),
+    path('show_average_data/', views.show_average_data),
     path('insert_data/', views.insert_data),
 ]
 #

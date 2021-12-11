@@ -1,21 +1,9 @@
 from .models import WeatherStats
+from .get_data_from_api import get_data
 
-# def get_city_instance(city):
-#     print('city in get_vity_instance', city, flush=True)
-#     cities = {
-#         "malaga": Malaga,
-#         "murcia": Murcia,
-#         "sevilla": Sevilla,
-#         "valencia": Valencia
-#     }
-#     for city_name, city_instance in cities.items():
-#         print('iterating', city_name, city_instance, flush=True)
-#         if city_name == city:
-#             print('city is', city_name, flush=True)
-#             return city_instance
-#     return False
 
-def add_to_database(data: list, city, station) -> None:
+def add_to_database(start_date: str, end_date: str, city: str, station: str) -> None:
+    data = get_data(start_date=start_date, end_date=end_date, station=station)
     for entry in data:
         for key, value in entry.items():
             try:

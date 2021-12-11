@@ -5,9 +5,9 @@ from rest_framework import serializers
 class WeatherStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeatherStats
-        fields = '__all__'
+        fields = "__all__"
         # fields = [
-        #     fecha
+        # fecha
         # indicativo
         # nombre
         # provincia
@@ -17,13 +17,13 @@ class WeatherStatsSerializer(serializers.ModelSerializer):
         # tmin
         # horatmin
         # tmax
-        # horatmax =
-        # dir = model
-        # velmedia =
-        # racha = mod
-        # horaracha =
-        # presMax = m
+        # horatmax
+        # dir
+        # velmedia
+        # racha
+        # horaracha
+        # presMax
         # horaPresMax
-        # presMin = m
+        # presMin
         # horaPresMin
         # ]

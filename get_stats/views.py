@@ -44,13 +44,13 @@ def show_average_data(request: Request) -> Response:
         and request.query_params.get("end_date")
         and request.query_params.get("station")
         and request.query_params.get("city")
-        and request.query_params.get("type")
+        and request.query_params.get("weather_type")
         and request.query_params.get("by")
     ):
         calculate_average_weather = CalculateAverageWeather(
             start_date=request.query_params.get("start_date"),
             end_date=request.query_params.get("end_date"),
-            weather_type=request.query_params.get("type"),
+            weather_type=request.query_params.get("weather_type"),
             station=request.query_params.get("station"),
             city=request.query_params.get("city"),
         )

@@ -40,9 +40,7 @@ def show_data(request: Request) -> Response:
 )
 def show_average_data(request: Request) -> Response:
     if (
-        request.query_params.get("start_date")
-        and request.query_params.get("end_date")
-        and request.query_params.get("station")
+        request.query_params.get("station")
         and request.query_params.get("city")
         and request.query_params.get("weather_type")
         and request.query_params.get("by")
@@ -53,14 +51,27 @@ def show_average_data(request: Request) -> Response:
             weather_type=request.query_params.get("weather_type"),
             station=request.query_params.get("station"),
             city=request.query_params.get("city"),
+            months=request.query_params.getlist("months"),
+            years=request.query_params.getlist("years"),
         )
-        if request.query_params.get("by") == "days":
+        if (
+            request.query_params.get("by") == "days"
+            and request.query_params.get("start_date")
+            and request.query_params.get("end_date")
+        ):
             result = (
                 calculate_average_weather.calculate_average_weather_by_day_of_month()
             )
             return Response(result)
         elif request.query_params.get("by") == "months":
             calculate_average_weather.calculate_average_weather_by_months()
+        elif (
+            request.query_params.get("by") == "years"
+            and request.query_params.getlist("years")
+            and request.query_params.getlist("months")
+        ):
+            result = calculate_average_weather.calculate_average_weather_by_years()
+            return Response(result, status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 

@@ -1,5 +1,7 @@
 # WeatherSpain
+
 ### Project and below readme in progress!
+
 based on Django REST Framework, running in Docker Compose
 
 Application gathers data from AEMET OpenData API (Spanish Meteo Agency), inserts data into database and calculates average values of weather.

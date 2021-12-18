@@ -1,5 +1,4 @@
 from .models import WeatherStats
-from django.db.models import QuerySet
 
 
 class CalculateAverageWeather:
@@ -28,12 +27,12 @@ class CalculateAverageWeather:
             provincia=self.city,
         )
         scope = [dictionary.__dict__ for dictionary in items]
-        return self.calculate_average_value(scope=scope, items=items)
+        return self.calculate_average_value(scope=scope, items=len(items))
 
     def calculate_average_weather_by_months(self):
         pass
 
-    def calculate_average_weather_by_years(self):
+    def calculate_average_weather_by_years(self) -> list[dict]:
         items = WeatherStats.objects.filter(
             fecha__year__in=self.years,
             fecha__month__in=self.months,
@@ -43,14 +42,13 @@ class CalculateAverageWeather:
         scope = [dictionary.__dict__ for dictionary in items]
         return self.calculate_average_value(scope=scope, items=items)
 
-    def calculate_average_value(self, scope: list, items: QuerySet) -> list[dict]:
-        all_values = 0
-        for x in scope:
-            for key, value in x.items():
-                if key == self.weather_type:
-                    all_values += value
-
-        average_value = all_values / len(items)
+    def calculate_average_value(self, scope: list, items: int) -> list[dict]:
+        average_values = [
+            value
+            for x in scope
+            for key, value in x.items()
+            if key == self.weather_type and value is not None
+        ]
         return [
             {
                 "start_date": self.start_date,
@@ -59,6 +57,6 @@ class CalculateAverageWeather:
                 "weather_type": self.weather_type,
                 "months": self.months,
                 "years": self.years,
-                "average_value": round(average_value, 2),
+                "average_value": round(sum(average_values) / items, 2),
             }
         ]

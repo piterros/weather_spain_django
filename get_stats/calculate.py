@@ -40,7 +40,7 @@ class CalculateAverageWeather:
             provincia=self.city,
         )
         scope = [dictionary.__dict__ for dictionary in items]
-        return self.calculate_average_value(scope=scope, items=items)
+        return self.calculate_average_value(scope=scope, items=len(items))
 
     def calculate_average_value(self, scope: list, items: int) -> list[dict]:
         average_values = [

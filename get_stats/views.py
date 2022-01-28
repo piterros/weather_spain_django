@@ -29,8 +29,15 @@ def show_data(request: Request) -> Response:
             provincia=request.query_params.get("city"),
         )
         serializer = WeatherStatsSerializer(items, many=True)
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+        if serializer.data:
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            data={"result": "No data for specified parameters"},
+            status=status.HTTP_204_NO_CONTENT,
+        )
+    return Response(
+        data={"result": "Incorrect query params"}, status=status.HTTP_400_BAD_REQUEST
+    )
 
 
 @api_view(
@@ -39,11 +46,14 @@ def show_data(request: Request) -> Response:
     ]
 )
 def show_average_data(request: Request) -> Response:
+    result = None
     if (
         request.query_params.get("station")
         and request.query_params.get("city")
         and request.query_params.get("weather_type")
         and request.query_params.get("by")
+        and request.query_params.get("start_date")
+        and request.query_params.get("end_date")
     ):
         calculate_average_weather = CalculateAverageWeather(
             start_date=request.query_params.get("start_date"),
@@ -54,25 +64,25 @@ def show_average_data(request: Request) -> Response:
             months=request.query_params.getlist("months"),
             years=request.query_params.getlist("years"),
         )
-        if (
-            request.query_params.get("by") == "days"
-            and request.query_params.get("start_date")
-            and request.query_params.get("end_date")
-        ):
+        if request.query_params.get("by") == "days":
             result = (
                 calculate_average_weather.calculate_average_weather_by_day_of_month()
             )
-            return Response(result)
-        elif request.query_params.get("by") == "months":
-            calculate_average_weather.calculate_average_weather_by_months()
         elif (
             request.query_params.get("by") == "years"
             and request.query_params.getlist("years")
             and request.query_params.getlist("months")
         ):
             result = calculate_average_weather.calculate_average_weather_by_years()
+        if result:
             return Response(result, status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            data={"result": "No data for specified parameters"},
+            status=status.HTTP_204_NO_CONTENT,
+        )
+    return Response(
+        data={"result": "Incorrect query params"}, status=status.HTTP_400_BAD_REQUEST
+    )
 
 
 @api_view(

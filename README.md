@@ -15,6 +15,7 @@ Application gathers data from AEMET OpenData API (Spanish Meteo Agency), inserts
 - DB_USER=<db_user>
 - DB_PASS=<db_pass>
 - DB_NAME=<db_name>
+- DB_HOST=<db_host> # it should be IP of your Postgres container in Docker
 - API_KEY=<api_key>
 
 3. Get ID of weather station from field "Datos de observación. Último elaborado" on https://opendata.aemet.es/centrodedescargas/productosAEMET?
